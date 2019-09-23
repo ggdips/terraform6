@@ -1,0 +1,9 @@
+.ssh
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+vars.tf
+vars.tf.swp
+tf.log
+devs.txt
+.gitignore.swp
