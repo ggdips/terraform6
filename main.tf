@@ -71,14 +71,7 @@ output "json" {
   value = "${data.template_file.data_json.*.rendered}"
 }
 
-resource "null_resource" "devsjson" {
-  count = "${length(data.template_file.data_json.*.rendered)}"
-  provisioner "local-exec" {
-    command = "cat >> ${path.module}./devs.json <<EOL\n${data.template_file.data_json.*.rendered[count.index]}\nEOL"
-  }
+resource "local_file" "devsjson2" {
+    content     = join("\n", data.template_file.data_json.*.rendered )
+    filename    = "${path.module}/devs2.json"
 }
-
-#resource "local_file" "devsjson2" {
-#    content     = join("\n", data.template_file.data_json.*.rendered )
-#    filename    = path.module/devs2.json
-#}

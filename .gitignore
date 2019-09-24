@@ -8,3 +8,4 @@ vars.tf.swp
 tf.log
 devs.txt
 .gitignore.swp
+*.swp
