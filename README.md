@@ -59,14 +59,15 @@ variable "aws_skey" {
   default  = "Put your AWS secret key here"
 }
 
-variable "srvs" {
-  type    = "list"
-  default = [
-    "Put your hostname-1",
-    "Put your hostname-2",
-    ...
-  ]
+variable "srvtemplname" {
+  default = "hostnameprefix-"
 }
+
+variable "srvcount" {
+  type = number
+  default = 2
+}
+
 
 ```
 ```
@@ -74,8 +75,3 @@ terraform init
 terraform apply
 ```
 
-### Testing
-Check connection
-```
-ssh root@`tail -n1 devs.txt | awk '{print $2}'` -i .ssh/id_rsa
-```

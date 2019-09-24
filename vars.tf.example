@@ -35,6 +35,11 @@ variable "vscale_rplan" {
   }
 }
 
-variable "vshname" {
-default    = "Put your hostname here"
+variable "srvtemplname" {
+  default = "hostnameprefix-"
+}
+
+variable "srvcount" {
+  type = number
+  default = 2
 }

@@ -1,3 +1,7 @@
+terraform {
+  required_version = "0.12.9"
+}
+
 provider "vscale" {
   token = "${var.vs_token}"
 }
@@ -67,9 +71,14 @@ output "json" {
   value = "${data.template_file.data_json.*.rendered}"
 }
 
-#resource "null_resource" "devstxt" {
-#  count   = "${var.srvcount}"
-#  provisioner "local-exec" {
-#    command = "echo ${var.srvs[count.index]} ${vscale_scalet.terraform6.*.public_address[count.index]} >> ./devs.txt"
-#  }
+resource "null_resource" "devsjson" {
+  count = "${length(data.template_file.data_json.*.rendered)}"
+  provisioner "local-exec" {
+    command = "cat >> ${path.module}./devs.json <<EOL\n${data.template_file.data_json.*.rendered[count.index]}\nEOL"
+  }
+}
+
+#resource "local_file" "devsjson2" {
+#    content     = "${data.template_file.data_json.*.rendered}"
+#    filename = "${path.module}/devs2.json"
 #}
