@@ -79,6 +79,6 @@ resource "null_resource" "devsjson" {
 }
 
 #resource "local_file" "devsjson2" {
-#    content     = "${data.template_file.data_json.*.rendered}"
-#    filename = "${path.module}/devs2.json"
+#    content     = join("\n", data.template_file.data_json.*.rendered )
+#    filename    = path.module/devs2.json
 #}
